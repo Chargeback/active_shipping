@@ -729,11 +729,24 @@ module ActiveShipping
       %w(SUCCESS WARNING NOTE).include?(highest_severity.text)
     end
 
-    def response_message(document)
-      notifications = document.at('Notifications')
-      return "" if notifications.nil?
+    def response_message(xml_fragment)
+      notifications = xml_fragment.at('Notifications')
+      return "" if notifications.blank?
 
-      "#{notifications.at('Severity').text} - #{notifications.at('Code').text}: #{notifications.at('Message').text}"
+      has_severity = (severity = notifications.at('Severity')).present?
+      has_code = (code = notifications.at('Code')).present?
+      has_message = (message = notifications.at('Message')).present?
+
+      case
+      when has_severity && has_code && has_message
+        "#{severity.text} - #{code.text}: #{message.text}"
+      when has_severity && has_code
+        "#{severity.text} - #{code.text}"
+      when has_severity
+        severity.text
+      else
+        ''
+      end
     end
 
     def commit(request, test = false)
