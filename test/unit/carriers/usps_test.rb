@@ -355,7 +355,7 @@ class USPSTest < ActiveSupport::TestCase
         :name => hashes[1],
         :max_weight => 50,
         :max_dimensions => sentence )
-      @carrier.expects(:package_valid_for_max_dimensions).with(p, dimensions)
+      @carrier.expects(:package_valid_for_max_dimensions).with(p, **dimensions)
       @carrier.send(:package_valid_for_service, p, service_node)
     end
 
@@ -367,8 +367,8 @@ class USPSTest < ActiveSupport::TestCase
     # should test against either kind of flat rate box:
     dimensions = [{:weight => 50.0, :length => 11.0, :width => 8.5, :height => 5.5}, # or...
                   {:weight => 50.0, :length => 13.625, :width => 11.875, :height => 3.375}]
-    @carrier.expects(:package_valid_for_max_dimensions).with(p, dimensions[0])
-    @carrier.expects(:package_valid_for_max_dimensions).with(p, dimensions[1])
+    @carrier.expects(:package_valid_for_max_dimensions).with(p, **dimensions[0])
+    @carrier.expects(:package_valid_for_max_dimensions).with(p, **dimensions[1])
     @carrier.send(:package_valid_for_service, p, service_node)
   end
 
