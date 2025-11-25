@@ -21,18 +21,18 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency("measured", ">= 2.0")
-  s.add_dependency("activesupport", ">= 4.2", "<= 7.0.8.7")
+  s.add_dependency("activesupport", ">= 4.2", "<= 7.1.6")
   s.add_dependency("active_utils", "~> 3.3.1")
   s.add_dependency("nokogiri", ">= 1.6")
 
   s.add_development_dependency("minitest")
   s.add_development_dependency("minitest-reporters")
   s.add_development_dependency("rake")
-  s.add_development_dependency("mocha", "~> 1")
+  s.add_development_dependency("mocha", "~> 2.2.0")
   s.add_development_dependency("timecop")
   s.add_development_dependency("business_time")
   s.add_development_dependency("pry")
   # s.add_development_dependency("pry-byebug")
   s.add_development_dependency("vcr")
-  # s.add_development_dependency("webmock")
+  s.add_development_dependency("webmock")
 end

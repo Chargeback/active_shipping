@@ -564,7 +564,7 @@ module ActiveShipping
         [:length, :width, :height].each_with_index do |axis, i|
           max_dimensions[axis] = single_axis_values[i] if single_axis_values[i]
         end
-        package_valid_for_max_dimensions(package, max_dimensions)
+        package_valid_for_max_dimensions(package, **max_dimensions)
       end
     end
 
