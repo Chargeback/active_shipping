@@ -20,8 +20,8 @@ class RemoteKunakiTest < ActiveSupport::TestCase
                )
 
     assert response.success?
-    assert_equal 4, response.rates.size
-    assert_equal ["UPS 2nd Day Air", "UPS Ground", "UPS Next Day Air Saver", "USPS First Class Mail"], response.rates.collect(&:service_name).sort
+    assert_equal 5, response.rates.size
+    assert_equal ["UPS 2nd Day Air", "UPS Ground", "UPS Next Day Air Saver", "USPS First Class Mail", "USPS Priority Mail"], response.rates.collect(&:service_name).sort
   end
 
   def test_send_no_items
